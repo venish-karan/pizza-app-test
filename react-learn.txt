@@ -1,0 +1,49 @@
+File =>
+    node_modules 
+        => contains library needed for react app
+
+    public 
+        => contains images, public assests
+
+
+    src 
+        => contains all the code we write
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+commands:
+
+npx create-react-App 
+    => is an tool to create a react project
+
+
+yarn uses caching 
+    => it is fast => instead we can use npm run 'start'
+
+
+render is in react-dom library 
+    => render(elements we want to render, in which tag we want to render)
+
+
+App.js is a root component 
+    => the part we want to render (<App />);
+
+
+<> </> => this is fragments 
+    => used to combine different elements
+
+
+npm install react-router-dom 
+    => for multiple pages in our app => to navigate to diff pages
+
+react-router-dom
+    => <Route path=""> // path is a value or also called as props
+
+curly braces in html are used for dynamic purpose
+
+rafce (boiler template) => react, arrow, funtional component, export
+
+
+life hooks : when we want to do something after some changes had happened
+
+useEffect(()=> {},[products]) are dependencies array, [] if empty it will run for once

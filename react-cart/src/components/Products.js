@@ -1,9 +1,12 @@
 import React from "react";
 import Product from "./Product";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { CartContext } from "../CartContext";
 
 const Products = () => {
+  // const { name } = useContext(CartContext);
+
   const [products, setProducts] = useState([]);
   useEffect(() => {
     //in package.json we need to mention url
@@ -22,6 +25,7 @@ const Products = () => {
         {
           // map loops through all element
           products.map((product) => (
+            // passing property from parent to child (product={product})
             <Product key={product._id} product={product} />
           ))
         }

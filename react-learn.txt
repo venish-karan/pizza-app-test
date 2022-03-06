@@ -47,3 +47,12 @@ rafce (boiler template) => react, arrow, funtional component, export
 life hooks : when we want to do something after some changes had happened
 
 useEffect(()=> {},[products]) are dependencies array, [] if empty it will run for once
+
+we are using {} braces in import statement because we have not exported it in default mode.
+
+ex: import { CartContext } from "./Cartcontext";
+
+// preventDefault is used here because we have wrapped the product component in link anchor tag
+and prevents from redirecting
+
+// stopPropogation is used when we use the onclick on the outer div as well as on button onclick is used.

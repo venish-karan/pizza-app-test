@@ -5,23 +5,37 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 // import About from "./pages/About";
 import Navigation from "./components/Navigation";
-import Products from "./pages/Products";
+import ProductsPage from "./pages/ProductsPage";
 import Cart from "./pages/Cart";
 import SingleProduct from "./pages/SingleProduct";
+import { CartContext } from "./CartContext";
+import { useState, useEffect } from "react";
 
+// this is a component so first letter should be capital
 const App = () => {
-  // this is a component so first letter should be capital
+  const [cart, setCart] = useState({});
+  // Fetch from local storage
+
+  useEffect(() => {
+    // const cart = window.localStorage.getItem("cart");
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
   return (
     <>
       <Router>
-        <Navigation />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          {/* <Route exact path="/about" element={<About />} /> */}
-          <Route exact path="/products" element={<Products />} />
-          <Route path="/products/:_id" element={<SingleProduct />}></Route>
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+        <CartContext.Provider value={{ cart, setCart }}>
+          <Navigation />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            {/* <Route exact path="/about" element={<About />} /> */}
+            <Route exact path="/products" element={<ProductsPage />} />
+            <Route path="/products/:_id" element={<SingleProduct />}></Route>
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </CartContext.Provider>
       </Router>
     </>
   );

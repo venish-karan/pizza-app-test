@@ -17,7 +17,9 @@ const App = () => {
   // Fetch from local storage
 
   useEffect(() => {
-    // const cart = window.localStorage.getItem("cart");
+    const cart = window.localStorage.getItem("cart");
+    console.log(JSON.parse(cart));
+    setCart(JSON.parse(cart));
   }, []);
 
   useEffect(() => {

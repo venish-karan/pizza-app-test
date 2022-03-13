@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../CartContext";
 
 const Product = (props) => {
+  const [isAdding, setIsAdding] = useState(false);
+
   const { cart, setCart } = useContext(CartContext);
 
   // console.log(props);
@@ -35,6 +37,11 @@ const Product = (props) => {
     _cart.totalItems += 1;
 
     setCart(_cart);
+    setIsAdding(true);
+
+    setTimeout(() => {
+      setIsAdding(false);
+    }, 1000);
 
     // const cart = {
     //   items: {
@@ -43,10 +50,11 @@ const Product = (props) => {
     //   totalItems: 5,
     // };
   };
+  // className="border-solid border-4 rounded-md p-4"
   return (
     <Link to={`/products/${product._id}`}>
       <div>
-        <img src={product.image} alt="pizza" />
+        <img className="rounded-full" src={product.image} alt="pizza" />
         <div className="text-center">
           <h2 className="text-lg font-bold py-2">{product.name}</h2>
           <span className="bg-gray-200 py-1 rounded-full text-sm px-4">
@@ -56,12 +64,15 @@ const Product = (props) => {
         <div className="flex justify-between items-center mt-4 font-bold">
           <span>₹ {product.price}</span>
           <button
+            disabled={isAdding}
             onClick={(e) => {
               addToCart(e, product);
             }}
-            className="bg-yellow-500 py-1 px-4 rounded-full font-bold"
+            className={`${
+              isAdding ? "bg-green-500" : "bg-yellow-500"
+            } py-1 px-4 rounded-full font-bold`}
           >
-            ADD
+            ADD{isAdding ? "ED" : ""}
           </button>
         </div>
       </div>

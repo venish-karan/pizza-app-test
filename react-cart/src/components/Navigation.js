@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../CartContext";
 
 const Navigation = () => {
   // we can also apply css like this by creating object
@@ -8,6 +10,8 @@ const Navigation = () => {
     padding: "6px 12px",
     borderRadius: "50px",
   };
+
+  const { cart } = useContext(CartContext);
 
   return (
     <>
@@ -26,7 +30,7 @@ const Navigation = () => {
           <li className="ml-6">
             <Link to={"/cart"}>
               <div style={cartStyle}>
-                <span className="mr-2">10</span>
+                <span className="mr-2">{cart.totalItems}</span>
                 <img src="/images/cart.png" alt="cart-icon" />
               </div>
             </Link>

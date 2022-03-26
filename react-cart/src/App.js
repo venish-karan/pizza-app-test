@@ -11,20 +11,24 @@ import SingleProduct from "./pages/SingleProduct";
 import { CartContext } from "./CartContext";
 import { useState, useEffect } from "react";
 
+import { getCart, storeCart } from "./helpers";
+
 // this is a component so first letter should be capital
 const App = () => {
   const [cart, setCart] = useState({});
   // Fetch from local storage
 
   useEffect(() => {
-    const cart = window.localStorage.getItem("cart");
-    console.log(JSON.parse(cart));
-    setCart(JSON.parse(cart));
+    getCart().then((cart) => {
+      // console.log(JSON.parse(cart));
+      setCart(JSON.parse(cart));
+    });
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("cart", JSON.stringify(cart));
+    storeCart(JSON.stringify(cart));
   }, [cart]);
+
   return (
     <>
       <Router>
